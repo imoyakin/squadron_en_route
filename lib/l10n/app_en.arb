@@ -1,0 +1,41 @@
+{
+    "@@locale": "en",
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+        "description": "The conventional newborn programmer greeting"
+    },
+
+    "menubar": "Menubar",
+    "@menubar": {
+        "description": "Menubar"
+    },
+    "menubar_webview": "Webview",
+    "@menubar_webview": {
+        "description": "Menubar Webview"
+    },
+    "menubar_fleet": "Fleet",
+    "@menubar_fleet": {
+        "description": "Fleet"
+    },
+    "menubar_fleet_1": "Fleet 1",
+    "@menubar_fleet_1": {
+        "description": "Fleet 1"
+    },
+    "menubar_fleet_2": "Fleet 2",
+    "@menubar_fleet_2": {
+        "description": "Fleet 2"
+    },
+    "menubar_fleet_3": "Fleet 3",
+    "@menubar_fleet_3": {
+        "description": "Fleet 3"
+    },
+    "menubar_fleet_4": "Fleet 4",
+    "@menubar_fleet_4": {
+        "description": "Fleet 4"
+    },
+
+    "dashboardConsole": "Console",
+    "@dashboardConsole": {
+        "description": "Dashboard Console"
+    }
+}
