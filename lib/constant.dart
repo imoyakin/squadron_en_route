@@ -21,4 +21,6 @@ class DockingView {
       DockingItem(name: 'setting', weight: 0.2, widget: SettingView());
   
   static DockingItem createFFC() => DockingItem(name: 'fcc', weight: 0.2, widget: FleetForcesCommand());
+
+  static DockingItem createDryDock() => DockingItem(name: 'drydock', weight: 0.2, widget: Drydock());
 }

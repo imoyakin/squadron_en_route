@@ -63,6 +63,7 @@ class AppWebViewState extends State<AppWebView> {
               initialSettings: webViewSetting,
               initialUserScripts: UnmodifiableListView([
                 kancolleUserScript,
+                kancolleResourceHackScript,
               ]),
               onWebViewCreated: (c) {
                 WebMessageListener kcl = WebMessageListener(

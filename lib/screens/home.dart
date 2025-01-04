@@ -81,9 +81,10 @@ class _HomeViewState extends State<HomeView>
             PlatformMenuItemGroup(members: [
               PlatformMenu(label: 'fleet', menus: [
                 PlatformMenuItem(
-                  label: 'webview',
+                  label: 'dry dock',
                   onSelected: () {
                     print('Send');
+                    _layout.addItemOnRoot(newItem: DockingView.createDryDock(), dropPosition: DropPosition.top);
                   },
                 ),
                 PlatformMenuItem(

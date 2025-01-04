@@ -1,12 +1,18 @@
 part of 'ndock_cubit.dart';
 
-@freezed
+@Freezed(
+    unionKey: 'ndock_type',
+    unionValueCase: FreezedUnionCase.pascal)
 class NdockState with _$NdockState {
-  const factory NdockState({
-    required List<Ndock> ndocks,
-  }) = _NdockState;
+  const factory NdockState.initial() = _NdockStateInitial;
 
-  factory NdockState.initial() => NdockState(ndocks: []);
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  @FreezedUnionValue('loaded')
+  const factory NdockState.loaded({
+    @Default([]) List<Ndock>? ndocks,
+  }) = _NdockStateLoaded;
+
+  factory NdockState.fromJson(Map<String,dynamic> json) => _$NdockStateFromJson(json);
 }
 
 @freezed

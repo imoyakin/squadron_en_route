@@ -1,9 +1,11 @@
 part of 'battle_cubit.dart';
 
-@freezed
+@Freezed(unionKey: 'battle_state_type', unionValueCase: FreezedUnionCase.pascal)
 class BattleState with _$BattleState {
   const factory BattleState.initial() = _Initial;
 
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  @FreezedUnionValue('loaded')
   const factory BattleState.loaded({
     @JsonKey(name: 'api_deck_id') required int apiDeckId,
     @JsonKey(name: 'api_formation') required List<int> apiFormation,
@@ -102,81 +104,6 @@ class AircraftBattleStage3 with _$AircraftBattleStage3 {
   factory AircraftBattleStage3.fromJson(Map<String, dynamic> json) =>
       _$AircraftBattleStage3FromJson(json);
 }
-
-// "api_raigeki": {
-//     "api_frai": [
-//         -1,
-//         -1,
-//         -1,
-//         -1,
-//         -1,
-//         -1,
-//         -1
-//     ],
-//     "api_fcl": [
-//         0,
-//         0,
-//         0,
-//         0,
-//         0,
-//         0,
-//         0
-//     ],
-//     "api_fdam": [
-//         0,
-//         0,
-//         0,
-//         0,
-//         0,
-//         8,
-//         0
-//     ],
-//     "api_fydam": [
-//         0,
-//         0,
-//         0,
-//         0,
-//         0,
-//         0,
-//         0
-//     ],
-//     "api_erai": [
-//         3,
-//         4,
-//         5,
-//         5,
-//         -1,
-//         -1,
-//         -1
-//     ],
-//     "api_ecl": [
-//         0,
-//         0,
-//         1,
-//         0,
-//         0,
-//         0,
-//         0
-//     ],
-//     "api_edam": [
-//         0,
-//         0,
-//         0,
-//         0,
-//         0,
-//         0,
-//         0
-//     ],
-//     "api_eydam": [
-//         0,
-//         0,
-//         8,
-//         0,
-//         0,
-//         0,
-//         0
-//     ]
-// }
 
 @freezed
 class BattleTorpedo with _$BattleTorpedo {

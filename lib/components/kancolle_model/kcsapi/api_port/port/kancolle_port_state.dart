@@ -4,7 +4,7 @@ part of 'kancolle_port_cubit.dart';
     unionKey: 'kancolle_port_state_type',
     unionValueCase: FreezedUnionCase.pascal)
 class KancollePortState with _$KancollePortState {
-  const factory KancollePortState.initial() = _Initial;
+  const factory KancollePortState.initial() = _KancollePortStateInitial;
 
   @JsonSerializable(fieldRename: FieldRename.snake)
   @FreezedUnionValue('loaded')
@@ -19,7 +19,7 @@ class KancollePortState with _$KancollePortState {
     // required int apiFurnitureAffectItems,
     required int apiParallelQuestCount,
     required int apiDestShipSlot,
-  }) = _KancollePortState;
+  }) = _KancollePortStateLoaded;
 
   factory KancollePortState.fromJson(Map<String, dynamic> json) =>
       _$KancollePortStateFromJson(json);

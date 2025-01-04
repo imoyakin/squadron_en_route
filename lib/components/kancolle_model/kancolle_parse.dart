@@ -20,7 +20,7 @@ void kancolleMessageHandle(BuildContext context, WebMessage message) {
       case 'api_start2':
         switch (seg[2]) {
           case 'getData':
-            break;
+            context.read<Start2GetDataCubit>().parse(result);
           default:
             handleDefault(message.data);
         }
@@ -54,6 +54,13 @@ void kancolleMessageHandle(BuildContext context, WebMessage message) {
         switch (seg[2]) {
           case 'can_preset_slot_select':
             break;
+          default:
+            handleDefault(message.data);
+        }
+      case 'api_req_map':
+        switch (seg[2]) {
+          case 'next':
+            context.read<MapNextCubit>().parse(result);
           default:
             handleDefault(message.data);
         }

@@ -14,8 +14,8 @@ class NdockCubit extends Cubit<NdockState> {
     final data = jsonDecode(jsonData);
     final ndocks =
         (data['api_data'] as List).map((e) => Ndock.fromJson(e)).toList();
-
-    emit(NdockState(ndocks: ndocks));
+        
+    emit(NdockState.loaded(ndocks: ndocks));
     // TODO register notification
     // for (var ndock in ndocks) {
     //   if (ndock.api_state == 1) {

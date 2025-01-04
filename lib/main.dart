@@ -46,6 +46,10 @@ class App extends StatelessWidget {
         BlocProvider<KancollePortCubit>(create: (context) => KancollePortCubit()),
         BlocProvider<BattleCubit>(create: (context) => BattleCubit()),
         BlocProvider<NdockCubit>(create: (context) => NdockCubit()),
+        BlocProvider<SlotItemCubit>(create: (context) => SlotItemCubit()),
+        BlocProvider<FurnitureCubit>(create: (context) => FurnitureCubit()),
+        BlocProvider<UnsetslotCubit>(create: (context) => UnsetslotCubit()),
+        BlocProvider<Start2GetDataCubit>(create: (context) => Start2GetDataCubit()),
       ],
       child: BlocConsumer<GlobalBloc, GlobalState>(
           listener: (context, state) {},
