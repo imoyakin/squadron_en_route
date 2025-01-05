@@ -1,4 +1,4 @@
-part of 'questlist_cubit.dart';
+part of 'questlist_bloc.dart';
 
 enum QuestState {
   @JsonValue(1)
@@ -9,27 +9,62 @@ enum QuestState {
   achieved,
 }
 
-@Freezed(unionKey: 'questlist_type', unionValueCase: FreezedUnionCase.pascal)
-class QuestlistState with _$QuestlistState  implements EquatableMixin{
+enum SortOrder {
+  noSort,
+  ongoingAsc,
+  ongoingDesc,
+  typeAsc,
+  typeDesc,
+}
+
+@freezed
+class QuestlistState with _$QuestlistState implements EquatableMixin {
   const QuestlistState._();
   const factory QuestlistState.initial() = _Initial;
 
   @JsonSerializable(fieldRename: FieldRename.snake)
   @FreezedUnionValue('loaded')
   const factory QuestlistState.loaded({
-    required int apiCount,
-    required int apiCompletedKind,
-    required List<Quest> apiList, //fixit
-    required int apiExecCount,
-    required List<ApiClist> apiCList, //fixit
-    required int apiExecType,
+    required QuestlistStateData apiData,
+    @Default(SortOrder.noSort) SortOrder? sortOrder,
   }) = _Loaded;
 
   factory QuestlistState.fromJson(Map<String, dynamic> json) =>
       _$QuestlistStateFromJson(json);
 
   @override
-  List<Object?> get props => [if(this is _Loaded) (this as _Loaded)];
+  List<Object?> get props => [if (this is _Loaded) (this as _Loaded)];
+
+  @override
+  bool? get stringify => true;
+}
+
+@Freezed(
+  unionKey: 'questlist_type',
+  unionValueCase: FreezedUnionCase.pascal,
+  copyWith: true,
+  makeCollectionsUnmodifiable: false,
+  equal: false,
+)
+class QuestlistStateData with _$QuestlistStateData implements EquatableMixin {
+  const QuestlistStateData._();
+
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  @FreezedUnionValue('loaded')
+  const factory QuestlistStateData.loaded({
+    required int apiCount,
+    required int apiCompletedKind,
+    required List<Quest> apiList, //fixit
+    required int apiExecCount,
+    required List<ApiClist> apiCList, //fixit
+    required int apiExecType,
+  }) = _StateLoaded;
+
+  factory QuestlistStateData.fromJson(Map<String, dynamic> json) =>
+      _$QuestlistStateDataFromJson(json);
+
+  @override
+  List<Object?> get props => [if (this is _StateLoaded) (this as _StateLoaded)];
 
   @override
   bool? get stringify => true;

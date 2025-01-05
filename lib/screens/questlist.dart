@@ -11,33 +11,25 @@ class QuestlistView extends StatefulWidget {
 }
 
 class QuestlistViewState extends State<QuestlistView> {
-  late int apiCount;
-  late int apiCompletedKind;
-  late List<Quest> apiList = [];
-  late int apiExecCount;
-  late List<ApiClist> apiCList;
-  late int apiExecType;
+  late QuestlistStateData? apiData;
 
   @override
   void initState() {
     super.initState();
-    apiList = [];
+    apiData = context
+        .read<QuestlistBloc>()
+        .state
+        .when(initial: () => null, loaded: (data, _) => data);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<QuestlistCubit, QuestlistState>(
+    return BlocListener<QuestlistBloc, QuestlistState>(
         listener: (context, state) {
           state.when(
             initial: () {},
-            loaded: (apiCount, apiCompletedKind, apiList, apiExecCount,
-                apiCList, apiExecType) {
-              this.apiCount = apiCount;
-              this.apiCompletedKind = apiCompletedKind;
-              this.apiList = List.from(apiList);
-              this.apiExecCount = apiExecCount;
-              this.apiCList = apiCList;
-              this.apiExecType = apiExecType;
+            loaded: (apiData, sortOrder) {
+              this.apiData = apiData;
               setState(() {});
             },
           );
@@ -52,28 +44,30 @@ class QuestlistViewState extends State<QuestlistView> {
               wrappedItem: CommandBarButton(
                 icon: const Icon(FluentIcons.increase_indent),
                 onPressed: () {
-                  setState(() {
-                    apiList.sort(
-                        (a, b) => b.apiState.index.compareTo(a.apiState.index));
-                  });
+                  context
+                      .read<QuestlistBloc>()
+                      .add(QuestlistEvent.sort(SortOrder.ongoingAsc));
                 },
               ),
             ),
           ]),
           Expanded(
-              child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Tooltip(
-                      message: apiList[index].apiDetail,
-                      child: ListTile.selectable(
-                      leading: Text('月'),
-                      title: Text(apiList[index].apiTitle),
-                      trailing: Text(apiList[index].apiState.toString()),
-                      selected:
-                          apiList[index].apiState != QuestState.unaccepted,
-                    ));
-                  },
-                  itemCount: apiList.length)),
+              child: apiData == null
+                  ? const Center()
+                  : ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Tooltip(
+                            message: apiData!.apiList[index].apiDetail,
+                            child: ListTile.selectable(
+                              leading: Text('月'),
+                              title: Text(apiData!.apiList[index].apiTitle),
+                              trailing: Text(
+                                  apiData!.apiList[index].apiState.toString()),
+                              selected: apiData!.apiList[index].apiState !=
+                                  QuestState.unaccepted,
+                            ));
+                      },
+                      itemCount: apiData!.apiList.length))
         ]));
   }
 }
