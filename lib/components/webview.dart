@@ -1,11 +1,12 @@
 import 'dart:collection';
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:squadron_en_route/assets.dart';
 import 'package:squadron_en_route/components/kancolle_model/kancolle_parse.dart';
 import 'package:squadron_en_route/constant.dart';
+import 'package:squadron_en_route/helper/mod.dart';
 import 'package:uuid/uuid.dart';
 import '../main.dart';
 
@@ -51,9 +52,8 @@ class AppWebViewState extends State<AppWebView> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
+    return ScaffoldPage(
+      content: Stack(alignment: Alignment.center, children: [
         AspectRatio(
             aspectRatio: 5 / 3,
             child: InAppWebView(
@@ -93,48 +93,62 @@ class AppWebViewState extends State<AppWebView> {
               onConsoleMessage: (controller, consoleMessage) =>
                   print(consoleMessage),
             )),
-            
-        Positioned(
-          bottom: 16.0,
-          right: 16.0,
-          child: FloatingActionButton(
-            onPressed: () {
-              controller.reload();
-            },
-            child: Icon(Icons.refresh),
+      ]),
+      bottomBar: CommandBar(
+        primaryItems: [
+          CommandBarBuilderItem(
+            builder: (context, mode, w) => Tooltip(
+              message: context.L.webviewCameraTakePic,
+              child: w,
+            ),
+            wrappedItem: CommandBarButton(
+              icon: const Icon(FluentIcons.camera),
+              onPressed: () {},
+            ),
           ),
-        ),
-        Positioned(
-          bottom: 16.0,
-          left: 16.0,
-          child: FloatingActionButton(
-            onPressed: () {
-              print("clear cache");
-              InAppWebViewController.clearAllCache();
-              controller.clearCache();
-            },
-            child: Icon(Icons.refresh),
+          CommandBarBuilderItem(
+            builder: (context, mode, w) => Tooltip(
+              message: context.L.webviewScale,
+              child: w,
+            ),
+            wrappedItem: CommandBarButton(
+              icon: const Icon(FluentIcons.back_to_window),
+              onPressed: () {
+                controller.injectJavascriptFileFromAsset(
+                    assetFilePath: 'assets/js/autoScaleIOS.js');
+              },
+            ),
           ),
-        ),
-        Positioned(
-          bottom: 80,
-          right: 16,
-          child: FloatingActionButton(
-            onPressed: () async {
-              controller.injectJavascriptFileFromAsset(
-                  assetFilePath: 'assets/js/autoScaleIOS.js');
-            },
-            child: Icon(Icons.zoom_in),
+          CommandBarBuilderItem(
+            builder: (context, mode, w) => Tooltip(
+              message: context.L.webviewRefresh,
+              child: w,
+            ),
+            wrappedItem: CommandBarButton(
+              icon: const Icon(FluentIcons.refresh),
+              onPressed: () {
+                controller.reload();
+              },
+            ),
           ),
-        ),
-        progress < 1.0
-            ? LinearProgressIndicator(
-                value: progress,
-                color: Colors.amber,
-                backgroundColor: Colors.transparent,
-              )
-            : Container(),
-      ],
+        ],
+        secondaryItems: [
+          CommandBarBuilderItem(
+            builder: (context, mode, w) => Tooltip(
+              message: context.L.webviewForceRefresh,
+              child: w,
+            ),
+            wrappedItem: CommandBarButton(
+              icon: const Icon(FluentIcons.refresh),
+              onPressed: () {
+                InAppWebViewController.clearAllCache();
+                controller.clearCache();
+              },
+            ),
+          ),
+        ],
+        isCompact: true,
+      ),
     );
   }
 }

@@ -37,5 +37,26 @@
     "dashboardConsole": "Console",
     "@dashboardConsole": {
         "description": "Dashboard Console"
+    },
+
+    "webview": "Webview",
+    "@webview": {
+        "description": "Webview"
+    },
+    "webviewCameraTakePic": "take picture",
+    "@webviewCameraTakePic": {
+        "description": "Camera"
+    },
+    "webviewScale": "scale",
+    "@webviewScale": {
+        "description": "Scale"
+    },
+    "webviewRefresh": "refresh",
+    "@webviewRefresh": {
+        "description": "Refresh"
+    },
+    "webviewForceRefresh": "Force Refresh",
+    "@webviewForceRefresh": {
+        "description": "Force Refresh"
     }
 }

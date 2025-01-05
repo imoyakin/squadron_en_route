@@ -7,9 +7,14 @@ class Assets {
   Assets._internal();
 
   static late String kancolleInjectJS;
-
+  static late String kancolleResourceHackJS;
+  
   static Future<void> init() async {
-    kancolleInjectJS = await rootBundle.loadString('assets/js/kancolle_inject.js');
+    kancolleInjectJS =
+        await rootBundle.loadString('assets/js/kancolle_inject.js');
+
+    kancolleResourceHackJS =
+        await rootBundle.loadString('assets/js/resource-hack.js');
   }
 }
 
@@ -18,3 +23,10 @@ UserScript get kancolleUserScript => UserScript(
     injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
     forMainFrameOnly: false,
     groupName: "kancolle");
+
+UserScript get kancolleResourceHackScript => UserScript(
+    source: Assets.kancolleInjectJS,
+    injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
+    forMainFrameOnly: false,
+    groupName: "kancolle");
+
