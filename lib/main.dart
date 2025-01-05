@@ -50,6 +50,7 @@ class App extends StatelessWidget {
         BlocProvider<FurnitureCubit>(create: (context) => FurnitureCubit()),
         BlocProvider<UnsetslotCubit>(create: (context) => UnsetslotCubit()),
         BlocProvider<Start2GetDataCubit>(create: (context) => Start2GetDataCubit()),
+        BlocProvider<QuestlistCubit>(create: (context) => QuestlistCubit()),
       ],
       child: BlocConsumer<GlobalBloc, GlobalState>(
           listener: (context, state) {},

@@ -1,9 +1,21 @@
 part of 'questlist_cubit.dart';
 
-@freezed
-class QuestlistState with _$QuestlistState {
+enum QuestState {
+  @JsonValue(1)
+  unaccepted,
+  @JsonValue(2)
+  ongoing,
+  @JsonValue(3)
+  achieved,
+}
+
+@Freezed(unionKey: 'questlist_type', unionValueCase: FreezedUnionCase.pascal)
+class QuestlistState with _$QuestlistState  implements EquatableMixin{
+  const QuestlistState._();
   const factory QuestlistState.initial() = _Initial;
 
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  @FreezedUnionValue('loaded')
   const factory QuestlistState.loaded({
     required int apiCount,
     required int apiCompletedKind,
@@ -15,6 +27,12 @@ class QuestlistState with _$QuestlistState {
 
   factory QuestlistState.fromJson(Map<String, dynamic> json) =>
       _$QuestlistStateFromJson(json);
+
+  @override
+  List<Object?> get props => [if(this is _Loaded) (this as _Loaded)];
+
+  @override
+  bool? get stringify => true;
 }
 
 @freezed
@@ -24,7 +42,7 @@ class Quest with _$Quest {
     @JsonKey(name: 'api_category') required int apiCategory,
     @JsonKey(name: 'api_type') required int apiType,
     @JsonKey(name: 'api_label_type') required int apiLabelType,
-    @JsonKey(name: 'api_state') required int apiState,
+    @JsonKey(name: 'api_state') required QuestState apiState,
     @JsonKey(name: 'api_title') required String apiTitle,
     @JsonKey(name: 'api_detail') required String apiDetail,
     @JsonKey(name: 'api_voice_id') required int apiVoicedId,
@@ -46,5 +64,6 @@ class ApiClist with _$ApiClist {
     @JsonKey(name: "api_c_flag") required int apiPage,
   }) = _ApiClist;
 
-  factory ApiClist.fromJson(Map<String, dynamic> json) => _$ApiClistFromJson(json);
+  factory ApiClist.fromJson(Map<String, dynamic> json) =>
+      _$ApiClistFromJson(json);
 }

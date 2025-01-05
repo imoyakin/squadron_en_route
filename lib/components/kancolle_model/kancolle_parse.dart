@@ -34,7 +34,7 @@ void kancolleMessageHandle(BuildContext context, WebMessage message) {
       case 'api_get_member':
         switch (seg[2]) {
           case 'questlist':
-            
+            context.read<QuestlistCubit>().parse(result);
           case 'require_info':
             //TODO
             break;

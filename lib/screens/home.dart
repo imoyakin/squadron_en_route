@@ -84,7 +84,9 @@ class _HomeViewState extends State<HomeView>
                   label: 'dry dock',
                   onSelected: () {
                     print('Send');
-                    _layout.addItemOnRoot(newItem: DockingView.createDryDock(), dropPosition: DropPosition.top);
+                    _layout.addItemOnRoot(
+                        newItem: DockingView.createDryDock(),
+                        dropPosition: DropPosition.top);
                   },
                 ),
                 PlatformMenuItem(
@@ -92,17 +94,22 @@ class _HomeViewState extends State<HomeView>
                   onSelected: () {},
                 ),
                 PlatformMenuItem(
-                  label: 'task',
+                  label: 'quest',
                   onSelected: () {
-                    print('Receive');
+                    print('Send');
+                    _layout.addItemOnRoot(
+                        newItem: DockingView.createQuestlist(),
+                        dropPosition: DropPosition.top);
                   },
                 ),
               ]),
             ]),
             PlatformMenuItem(
-              label: 'task',
+              label: 'quest',
               onSelected: () {
-                print('Receive');
+                _layout.addItemOnRoot(
+                    newItem: DockingView.createQuestlist(),
+                    dropPosition: DropPosition.top);
               },
             ),
           ]),

@@ -23,4 +23,8 @@ class DockingView {
   static DockingItem createFFC() => DockingItem(name: 'fcc', weight: 0.2, widget: FleetForcesCommand());
 
   static DockingItem createDryDock() => DockingItem(name: 'drydock', weight: 0.2, widget: Drydock());
+
+  static DockingItem createFleet(int id) => DockingItem(name: 'fleet$id', weight: 0.2, widget: FleetFormation(id: id));
+
+  static DockingItem createQuestlist() => DockingItem(name: 'questlist', weight: 0.2, widget: QuestlistView());
 }
