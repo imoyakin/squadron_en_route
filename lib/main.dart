@@ -51,6 +51,7 @@ class App extends StatelessWidget {
         BlocProvider<UnsetslotCubit>(create: (context) => UnsetslotCubit()),
         BlocProvider<Start2GetDataCubit>(create: (context) => Start2GetDataCubit()),
         BlocProvider<QuestlistBloc>(create: (context) => QuestlistBloc()),
+        BlocProvider<PracticeBattleResultCubit>(create: (context)=> PracticeBattleResultCubit()),
       ],
       child: BlocConsumer<GlobalBloc, GlobalState>(
           listener: (context, state) {},

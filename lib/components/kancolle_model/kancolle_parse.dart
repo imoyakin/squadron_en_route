@@ -35,9 +35,9 @@ void kancolleMessageHandle(BuildContext context, WebMessage message) {
         switch (seg[2]) {
           case 'questlist':
             context.read<QuestlistBloc>().add(QuestlistEvent.update(result));
-          case 'require_info':
-            //TODO
-            break;
+          // case 'require_info':
+          //   //TODO
+          //   break;
           case 'ndock':
             context.read<NdockCubit>().parse(result);
           default:
@@ -45,15 +45,15 @@ void kancolleMessageHandle(BuildContext context, WebMessage message) {
         }
       case 'api_req_member':
         switch (seg[2]) {
-          case 'get_incentive':
-            break;
+          // case 'get_incentive':
+          //   break;
           default:
             handleDefault(message.data);
         }
       case 'api_req_kaisou':
         switch (seg[2]) {
-          case 'can_preset_slot_select':
-            break;
+          // case 'can_preset_slot_select':
+          //   break;
           default:
             handleDefault(message.data);
         }
@@ -61,6 +61,13 @@ void kancolleMessageHandle(BuildContext context, WebMessage message) {
         switch (seg[2]) {
           case 'next':
             context.read<MapNextCubit>().parse(result);
+          default:
+            handleDefault(message.data);
+        }
+      case 'api_req_practice':
+        switch (seg[2]) {
+          case 'battle_result':
+            context.read<PracticeBattleResultCubit>().parse(result);
           default:
             handleDefault(message.data);
         }
