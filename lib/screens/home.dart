@@ -41,7 +41,6 @@ class _HomeViewState extends State<HomeView>
               PlatformMenuItem(
                 label: 'add',
                 onSelected: () {
-                  print('object');
                   //setState(() {
                   _layout.addItemOnRoot(
                       newItem: DockingItem(
@@ -55,7 +54,6 @@ class _HomeViewState extends State<HomeView>
               PlatformMenuItem(
                 label: 'Receive',
                 onSelected: () {
-                  print('Receive');
                 },
               ),
             ]),
@@ -66,13 +64,11 @@ class _HomeViewState extends State<HomeView>
             PlatformMenuItem(
               label: context.L.menubar_webview,
               onSelected: () {
-                print('Send');
               },
             ),
             PlatformMenuItem(
               label: 'FleetForcesCommand',
               onSelected: () {
-                print("object");
                 _layout.addItemOnRoot(
                     newItem: DockingView.createFFC(),
                     dropPosition: DropPosition.top);
@@ -83,7 +79,6 @@ class _HomeViewState extends State<HomeView>
                 PlatformMenuItem(
                   label: 'dry dock',
                   onSelected: () {
-                    print('Send');
                     _layout.addItemOnRoot(
                         newItem: DockingView.createDryDock(),
                         dropPosition: DropPosition.top);
@@ -96,7 +91,6 @@ class _HomeViewState extends State<HomeView>
                 PlatformMenuItem(
                   label: 'quest',
                   onSelected: () {
-                    print('Send');
                     _layout.addItemOnRoot(
                         newItem: DockingView.createQuestlist(),
                         dropPosition: DropPosition.top);
@@ -119,7 +113,6 @@ class _HomeViewState extends State<HomeView>
             PlatformMenuItem(
               label: 'about',
               onSelected: () {
-                print('Send');
               },
             ),
           ]),

@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'dart:convert';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -70,10 +69,7 @@ class AppWebViewState extends State<AppWebView> {
                   jsObjectName: "kcMessage",
                   onPostMessage:
                       (message, sourceOrigin, isMainFrame, replyProxy) {
-                    // _kancolleMessageHandle(message!);
-
                     kancolleMessageHandle(context, message!);
-                    print(json);
                   },
                 );
                 controller = c;
