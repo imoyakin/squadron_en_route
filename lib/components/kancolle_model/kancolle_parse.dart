@@ -71,6 +71,13 @@ void kancolleMessageHandle(BuildContext context, WebMessage message) {
           default:
             handleDefault(message.data);
         }
+      case 'api_req_quest':
+        switch (seg[2]) {
+          case 'clearitemget':
+            context.read<ClearitemgetCubit>().parse(result);
+          default:
+            handleDefault(message.data);
+        }
       default:
         handleDefault(message.data);
     }

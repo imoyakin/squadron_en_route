@@ -27,4 +27,16 @@ class DockingView {
   static DockingItem createFleet(int id) => DockingItem(name: 'fleet$id', weight: 0.2, widget: FleetFormation(id: id));
 
   static DockingItem createQuestlist() => DockingItem(name: 'questlist', weight: 0.2, widget: QuestlistView());
+
+  // static DockingItem crateUserShipList() => DockingItem(name: 'userShipList', weight: 0.2, widget: UserShipListView());
+  
+  // static DockingItem createUserEquipList() => DockingItem(name: 'slotItem', weight: 0.2, widget: UserEquipList());
+
+  // static DockingItem createBattle() => DockingItem(name: 'battle', weight: 0.2, widget: BattleView());
+
+  // static DockingItem createCompassNeedle() => DockingItem(name: 'compassNeedle', weight: 0.2, widget: CompassNeedle());
+
+  // static DockingItem createResourceChart() => DockingItem(name: 'resourceChart', weight: 0.2, widget: ResourceChart());
+
+  // static DockingItem createAkasshiList() => DockingItem(name: 'akasshiList', weight: 0.2, widget: AkasshiList());
 }
