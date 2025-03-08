@@ -53,8 +53,7 @@ class _HomeViewState extends State<HomeView>
               ),
               PlatformMenuItem(
                 label: 'Receive',
-                onSelected: () {
-                },
+                onSelected: () {},
               ),
             ]),
           ],
@@ -63,8 +62,7 @@ class _HomeViewState extends State<HomeView>
           PlatformMenu(label: 'panel', menus: [
             PlatformMenuItem(
               label: context.L.menubar_webview,
-              onSelected: () {
-              },
+              onSelected: () {},
             ),
             PlatformMenuItem(
               label: 'FleetForcesCommand',
@@ -91,9 +89,13 @@ class _HomeViewState extends State<HomeView>
                 PlatformMenuItem(
                   label: 'quest',
                   onSelected: () {
-                    _layout.addItemOnRoot(
-                        newItem: DockingView.createQuestlist(),
-                        dropPosition: DropPosition.top);
+                    try {
+                      _layout.addItemOnRoot(
+                          newItem: DockingView.createQuestlist(),
+                          dropPosition: DropPosition.top);
+                    } catch (e) {
+                      print(e);
+                    }
                   },
                 ),
               ]),
@@ -112,8 +114,7 @@ class _HomeViewState extends State<HomeView>
           PlatformMenu(label: 'help', menus: [
             PlatformMenuItem(
               label: 'about',
-              onSelected: () {
-              },
+              onSelected: () {},
             ),
           ]),
         ]),

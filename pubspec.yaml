@@ -40,7 +40,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   uuid: ^4.5.1
   path_provider: ^2.1.5
-  fluent_ui: ^4.10.0
+  fluent_ui: ^4.11.2
   window_manager: ^0.4.3
   intl: ^0.19.0
   freezed: ^2.5.7
@@ -48,6 +48,7 @@ dependencies:
   json_annotation: ^4.9.0
   desktop_drop: ^0.5.0
   equatable: ^2.0.7
+  url_launcher: ^6.3.1
 
 dependency_overrides:
   flutter_inappwebview:

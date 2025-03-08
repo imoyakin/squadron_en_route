@@ -56,7 +56,7 @@ class QuestlistStateData with _$QuestlistStateData implements EquatableMixin {
     required int apiCompletedKind,
     required List<Quest> apiList, //fixit
     required int apiExecCount,
-    required List<ApiClist> apiCList, //fixit
+    // required List<ApiClist> apiCList, //fixit
     required int apiExecType,
   }) = _StateLoaded;
 
