@@ -22,7 +22,7 @@ class _HomeViewState extends State<HomeView>
       root: DockingTabs([
         DockingView.webView,
         DockingView.setting,
-      ]),
+      ], id: 'root'),
     );
     try {
       _layout.load(layout: '', parser: this, builder: this);
@@ -41,14 +41,12 @@ class _HomeViewState extends State<HomeView>
               PlatformMenuItem(
                 label: 'add',
                 onSelected: () {
-                  //setState(() {
                   _layout.addItemOnRoot(
                       newItem: DockingItem(
                           name: '3',
                           weight: 0.2,
                           widget: Center(child: Text('1'))),
                       dropPosition: DropPosition.top);
-                  //});
                 },
               ),
               PlatformMenuItem(
@@ -67,9 +65,7 @@ class _HomeViewState extends State<HomeView>
             PlatformMenuItem(
               label: 'FleetForcesCommand',
               onSelected: () {
-                _layout.addItemOnRoot(
-                    newItem: DockingView.createFFC(),
-                    dropPosition: DropPosition.top);
+                addItemOnWebview(DockingView.createFFC());
               },
             ),
             PlatformMenuItemGroup(members: [
@@ -77,9 +73,7 @@ class _HomeViewState extends State<HomeView>
                 PlatformMenuItem(
                   label: 'dry dock',
                   onSelected: () {
-                    _layout.addItemOnRoot(
-                        newItem: DockingView.createDryDock(),
-                        dropPosition: DropPosition.top);
+                    addItemOnWebview(DockingView.createDryDock());
                   },
                 ),
                 PlatformMenuItem(
@@ -89,13 +83,7 @@ class _HomeViewState extends State<HomeView>
                 PlatformMenuItem(
                   label: 'quest',
                   onSelected: () {
-                    try {
-                      _layout.addItemOnRoot(
-                          newItem: DockingView.createQuestlist(),
-                          dropPosition: DropPosition.top);
-                    } catch (e) {
-                      print(e);
-                    }
+                    addItemOnWebview(DockingView.createQuestlist());
                   },
                 ),
               ]),
@@ -103,9 +91,7 @@ class _HomeViewState extends State<HomeView>
             PlatformMenuItem(
               label: 'quest',
               onSelected: () {
-                _layout.addItemOnRoot(
-                    newItem: DockingView.createQuestlist(),
-                    dropPosition: DropPosition.top);
+                addItemOnWebview(DockingView.createQuestlist());
               },
             ),
           ]),
@@ -137,5 +123,15 @@ class _HomeViewState extends State<HomeView>
       maximizable: maximized,
       widget: Center(child: Text(id)),
     );
+  }
+
+  void addItemOnWebview(DockingItem newItem) {
+    try {
+      DockingTabs root = _layout.findDockingArea('root') as DockingTabs;
+      _layout.addItemOn(
+          newItem: newItem, targetArea: root, dropIndex: root.childrenCount);
+    } catch (e) {
+      print(e);
+    }
   }
 }
