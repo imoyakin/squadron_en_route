@@ -102,6 +102,38 @@ class AppWebViewState extends State<AppWebView> {
               onPressed: () {},
             ),
           ),
+          // TODO: impl 
+          CommandBarBuilderItem(
+            builder: (context, mode, w) => Tooltip(
+              message: context.L.webviewCameraTakePic,
+              child: w,
+            ),
+            wrappedItem: CommandBarButton(
+              icon: const Icon(FluentIcons.video),
+              onPressed: () {},
+            ),
+          ),
+          // 开启关闭声音
+          CommandBarBuilderItem(
+            builder: (context, mode, w) => Tooltip(
+              message: context.L.webviewCameraTakePic,
+              child: w,
+            ),
+            wrappedItem: CommandBarButton(
+              icon: const Icon(FluentIcons.volume0),
+              onPressed: () {},
+            ),
+          ),
+                    CommandBarBuilderItem(
+            builder: (context, mode, w) => Tooltip(
+              message: context.L.webviewCameraTakePic,
+              child: w,
+            ),
+            wrappedItem: CommandBarButton(
+              icon: const Icon(FluentIcons.volume3),
+              onPressed: () {},
+            ),
+          ),
           CommandBarBuilderItem(
             builder: (context, mode, w) => Tooltip(
               message: context.L.webviewScale,

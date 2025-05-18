@@ -58,5 +58,25 @@
     "webviewForceRefresh": "Force Refresh",
     "@webviewForceRefresh": {
         "description": "Force Refresh"
-    }
+    },
+    "questCycleDaily": "Daily",
+    "questCycleWeekly": "Weekly",
+    "questCycleMonthly": "Monthly",
+    "questCycleOneTime": "One-Time",
+    "questCycleQuarterly": "Quarterly",
+    "questCycleYearly": "Yearly (Month: {month})",
+    "questCycleYearlyJanuary": "Yearly (January)",
+    "questCycleYearlyFebruary": "Yearly (February)",
+    "questCycleYearlyMarch": "Yearly (March)",
+    "questCycleYearlyApril": "Yearly (April)",
+    "questCycleYearlyMay": "Yearly (May)",
+    "questCycleYearlyJune": "Yearly (June)",
+    "questCycleYearlyJuly": "Yearly (July)",
+    "questCycleYearlyAugust": "Yearly (August)",
+    "questCycleYearlySeptember": "Yearly (September)",
+    "questCycleYearlyOctober": "Yearly (October)",
+    "questCycleYearlyNovember": "Yearly (November)",
+    "questCycleYearlyDecember": "Yearly (December)",
+    "questCycleOther": "Other",
+    "questCycleUnknown": "Unknown"
 }
